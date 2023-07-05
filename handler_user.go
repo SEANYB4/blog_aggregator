@@ -5,8 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/SEANYB4/blog_aggregator/internal/database"
+	_ "github.com/SEANYB4/blog_aggregator/internal/auth"
 	"github.com/google/uuid"
 	"time"
+
 )
 
 
@@ -41,5 +43,14 @@ func (apiCfg *apiConfig) handlerCreateUser(w http.ResponseWriter, r *http.Reques
 		}
 
 
+		respondWithJSON(w, 201, databaseUserToUser(user))
+}
+
+
+
+func (apiCfg *apiConfig) handlerGetUser(w http.ResponseWriter, r *http.Request, user database.User) {
+
+
 		respondWithJSON(w, 200, databaseUserToUser(user))
+	
 }
